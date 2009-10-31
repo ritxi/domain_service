@@ -1,0 +1,38 @@
+ABOUT THIS WEBAPP
+
+This is a webapp service which verifies the existence or not of a MX record in a domain name o email address domain name.
+
+It works by passing /validates/domain_or_email
+It returns WORKS or FAIL.
+
+If no damin name exists it return a message "NOT A VALID DOMAIN: domain_name"
+
+You can also query to the app if a given domain has been cached by doing:
+
+/cached/domain_or_email
+
+It returns YES or NO
+
+INSTALL THIS APP
+
+1. Install dependencies
+  You can install all dependencies by executing:
+
+  sudo rake install_dependencies
+
+2. Configure environment files
+
+  All configuration files are located in config folder.
+
+  Configuration files are organized in cofnig_#{enviroment}.yml files.
+  All common configurations can be set at config_common.yml
+  
+  Database configuration is set into database.yml, you can check database.yml.sample to start
+
+3. Start webservice
+
+  There are rake tasks to do so.
+  
+  rake thin:start
+  rake thin:stop
+  rake thin:restart

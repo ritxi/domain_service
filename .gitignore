@@ -1,0 +1,6 @@
+*.log
+*.pid
+config.yml
+database.yml
+.DS_Store
+.gems*

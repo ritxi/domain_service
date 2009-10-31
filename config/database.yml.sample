@@ -1,0 +1,14 @@
+production:
+  adapter: 'mysql'
+  user: 'username'
+  password: 'secret'
+  database: 'domain_cache'
+  socket: '/var/run/mysqld/mysqld.sock'
+  
+development: &general
+  adapter: 'mysql'
+  user: 'root'
+  database: 'cache_domains'
+  socket: '/opt/local/var/run/mysql5/mysqld.sock'
+test:
+  <<: *general
