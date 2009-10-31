@@ -2,3 +2,4 @@
   environment: production
   servers: 4
   address: '127.0.0.1'
+  socket: ./tmp/sockets/thin.sock

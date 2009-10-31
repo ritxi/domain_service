@@ -27,6 +27,7 @@ class DomainCache
 end
 
 #DataMapper.auto_migrate!
+
 get '/' do
   redirect('/help')
 end

@@ -4,3 +4,4 @@ config.yml
 database.yml
 .DS_Store
 .gems*
+*.sock

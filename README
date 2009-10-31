@@ -24,7 +24,7 @@ INSTALL THIS APP
 
   All configuration files are located in config folder.
 
-  Configuration files are organized in cofnig_#{enviroment}.yml files.
+  Configuration files are organized in config_#{enviroment}.yml files.
   All common configurations can be set at config_common.yml
   
   Database configuration is set into database.yml, you can check database.yml.sample to start
@@ -33,6 +33,15 @@ INSTALL THIS APP
 
   There are rake tasks to do so.
   
-  rake thin:start
+  rake thin:start environment=development | production # development mode is set by default
   rake thin:stop
   rake thin:restart
+  
+  The first time you start the application on production or development uncoment #DataMapper.auto_migrate!
+  
+    rake thin:start
+    uncoment and visit once
+    comment again
+    rake thin:restart
+
+  You must do it first time in order to create the caching table

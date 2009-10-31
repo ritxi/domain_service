@@ -1,3 +1,8 @@
+require 'yaml'
+appdir = Dir.pwd
+
+task :default => :test
+
 desc "Install gems that this app depends on. May need to be run with sudo."
 task :install_dependencies do
   dependencies = {
@@ -6,8 +11,8 @@ task :install_dependencies do
     "dm-timestamps"   => "0.10.0",
     "dm-validations"  => "0.10.0",
     "do_mysql"        => "0.10.0",
-    "net-dns"        => "0.5.3",
-    "haml"            => "2.2.10"
+    "net-dns"         => "0.5.3",
+    "haml"            => "2.2.10",
     "thin"            => "any"
   }
   dependencies.each do |gem_name, version|
@@ -18,12 +23,15 @@ task :install_dependencies do
   end
 end
 
-desc "Execute test"
+desc "Execute test(default)"
 task :test do
-  
+  require 'domain_service_test'
+end              
+desc "*!!Executes the server and automigrates"
+task :automigrate do
+  puts "Needs to be added :("
 end
 
-appdir = Dir.pwd
 namespace :thin do  
   desc "Stop The Application"
   task :stop do
@@ -41,7 +49,10 @@ namespace :thin do
   end
   desc "Start The Application"
   task :start do
-    unless ENV.include?("environment")
+    mkdir_p "#{appdir}/tmp/pids"
+    if ENV.include?("environment") && ENV['environment'] == 'production'
+      mkdir_p "#{appdir}/tmp/sockets"
+    else
       ENV['environment'] = 'development'
       puts "Using development environment"
     end
